@@ -4,30 +4,27 @@ class Node:
         self.next = None
 
 
-def insert_node(head,x):
+def middle_linkedlist(head):
     
-    temp=Node(x)
     
     if head==None:
-        return temp
+        return
     
-    elif head.key>x:
-        temp.next=head
+    
+    count=0
+    curr=head
+    
+    while curr:
+        count+=1
         
-        return temp
-    
-    
-    else:
-        curr=head
-        while curr.next!=None and curr.next.key<x:
-            
-            curr=curr.next
-            
-            
-        temp.next=curr.next
-        curr.next=temp
+        curr=curr.next
         
-        return head
+    curr=head   
+    for i in range(count//2):
+        curr=curr.next
+        
+    print(curr.key)
+    
     
    
     
@@ -45,11 +42,16 @@ head = Node(10)
 head.next = Node(20)
 head.next.next = Node(30)
 head.next.next.next = Node(40)
+head.next.next.next.next = Node(50)
 
 
 
 printList(head)
 
-head =insert_node(head,35)      
+head=middle_linkedlist(head)
 
-printList(head)
+
+
+
+
+

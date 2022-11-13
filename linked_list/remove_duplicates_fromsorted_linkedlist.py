@@ -4,30 +4,29 @@ class Node:
         self.next = None
 
 
-def insert_node(head,x):
+def remove_duplicates(head):
     
-    temp=Node(x)
     
-    if head==None:
-        return temp
+    curr=head
     
-    elif head.key>x:
-        temp.next=head
+    while curr!=None and curr.next!=None:
         
-        return temp
-    
-    
-    else:
-        curr=head
-        while curr.next!=None and curr.next.key<x:
+        if curr.key==curr.next.key:
             
+            curr.next=curr.next.next
+            
+            
+        else:
             curr=curr.next
             
             
-        temp.next=curr.next
-        curr.next=temp
-        
-        return head
+            
+    return head
+    
+    
+    
+    
+    
     
    
     
@@ -43,13 +42,16 @@ def printList(head):
 
 head = Node(10)
 head.next = Node(20)
-head.next.next = Node(30)
+head.next.next = Node(20)
 head.next.next.next = Node(40)
+head.next.next.next.next = Node(40)
 
 
 
 printList(head)
 
-head =insert_node(head,35)      
+head=remove_duplicates(head)
+
+print("After sorted the linked list is: ")
 
 printList(head)

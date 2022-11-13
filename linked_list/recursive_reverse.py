@@ -4,32 +4,21 @@ class Node:
         self.next = None
 
 
-def insert_node(head,x):
-    
-    temp=Node(x)
+def recursive(head):
     
     if head==None:
-        return temp
-    
-    elif head.key>x:
-        temp.next=head
-        
-        return temp
-    
-    
-    else:
-        curr=head
-        while curr.next!=None and curr.next.key<x:
-            
-            curr=curr.next
-            
-            
-        temp.next=curr.next
-        curr.next=temp
-        
         return head
     
-   
+    if head.next==None:
+        return head
+    
+    rest_head=recursive(head.next)
+    res_tail=head.next
+    
+    res_tail.next=head
+    head.next=None
+    
+    return rest_head
     
 
 
@@ -45,11 +34,11 @@ head = Node(10)
 head.next = Node(20)
 head.next.next = Node(30)
 head.next.next.next = Node(40)
-
+head.next.next.next.next = Node(25)
 
 
 printList(head)
 
-head =insert_node(head,35)      
+head =recursive(head)      
 
 printList(head)
